@@ -1,4 +1,5 @@
-命名规范
+* [代码规范]
+    * [(一) 命名规约]
 类命 驼峰式 MarcoPolo
 方法名 localValue
 常量 大写单词， 单词间_分割，语义清楚 MAX _ STOCK _ COUNT
@@ -7,13 +8,15 @@ boolean类型，变量不要用is开头
 包名统一英文单词单数形式，不使用缩写
 接口中不加修饰，public 不要加
 形容能力的接口使用-able结尾
-代码格式
+
+    * [(二) 代码格式]
 左小括号/右和字符之间不出现空格，if / for / while / switch / do 等保留字与括号之间都必须加空格
 二目、三目运算符的左右两边都需要加一个空格
 第二行相对第一行缩进 4 个空格，其他不缩进
 传参要多个空格隔开
 不同的业务逻辑之间或者不同的语义之间插入一个空行。相同业务逻辑和语义之间不需要插入空行
-OOP规约
+
+    * [(三) OOP规约]
 访问类中静态方法，不用对象引用类，直接用类名来进行访问。
 
 过时接口，@ Deprecated 注解
@@ -37,7 +40,7 @@ POJO 类必须写 toString 方法。
 
 字符串的连接方式,使用 StringBuilder 的 append 方法进行扩展。
 
-集合处理
+    * [(四) 集合处理]
 只要重写 equals ,就必须重写 hashCode 。如果自定义对象做为 Map 的键,那么必须重写 hashCode 和 equals。
 ArrayList 的 subList 结果不可强转成 ArrayList ,否则会抛出 ClassCastException异常,即 java . util . RandomAccessSubList cannot be cast to java . util . ArrayList .
 Arrays . asList() 把数组转换成集合时,不能使用其修改集合相关的方法,它的 add / remove / clear 方法会抛出 UnsupportedOperationException 异常。asList 的返回对象是一个 Arrays 内部类,并没有实现集合的修改方法。
@@ -55,7 +58,7 @@ HashMap |允许为 null| 允许为 null |AbstractMap | 线程不安全
 
 ConcurrentHashMap 存储 null 值时会抛出 NPE 异常.
 
-并发处理
+    * [(五) 并发处理]
 线程资源必须通过线程池提供,不允许在应用中自行显式创建线程。
 线程池不允许使用 Executors 去创建,而是通过 ThreadPoolExecutor 的方式,这样的处理方式让写的同学更加明确线程池的运行规则,规避资源耗尽的风险。
 SimpleDateFormat 是线程不安全的类,一般不要定义为 static 变量,如果定义为static ,必须加锁,或者使用 DateUtils 工具类。
@@ -85,7 +88,7 @@ AtomicInteger count = new AtomicInteger(); count . addAndGet( 1 ); 如果是 JDK
 HashMap 在容量不够进行 resize 时由于高并发可能出现死链,导致 CPU 飙升,在
 开发过程中可以使用其它数据结构或加锁来规避此风险。
 
-控制语句
+    * [(六) 控制语句]
 表达异常的分支时,少用 if-else 方式 ,这种方式可以改写成
 if (condition) {
 ...
@@ -106,11 +109,13 @@ private static final Logger logger = LoggerFactory.getLogger(Abc.class);
 避免重复打印日志,浪费磁盘空间,务必在 log 4 j . xml 中设置 additivity = false 。
 正例:
 <logger name="com.taobao.dubbo.config" additivity="false">
-单元测试
+
+    * [(七) 单元测试]
 单元测试应该是全自动执行的,并且非交互式的。测试框架通常是定期执行的,执行
 过程必须完全自动化才有意义。输出结果需要人工检查的测试不是一个好的单元测试。单元测
 试中不准使用 System.out 来进行人肉验证,必须使用 assert 来验证.
-Mysql
+
+    * [(八) MYSQL]
 表达是与否概念的字段,必须使用 is _ xxx 的方式命名,数据类型是 unsigned tinyint( 1 表示是,0 表示否 )
 主键索引名为 pk_ 字段名;唯一索引名为 uk _字段名 ; 普通索引名则为 idx _字段名。
 小数类型为 decimal ,禁止使用 float 和 double 。
@@ -128,7 +133,8 @@ NULL ,因此使用 sum() 时需注意 NPE 问题。可以使用如下方式来�
 使用 ISNULL() 来判断是否为 NULL 值。NULL 与任何值的直接比较都为 NULL。
 在代码中写分页查询逻辑时,若 count 为 0 应直接返回,避免执行后面的分页语句。
 不得使用外键与级联,一切外键概念必须在应用层解决。
-服务器
+
+    * [(九) 服务器]
 高并发的服务器建议调小TCP协议的time_wait超时时间。操作系统默认是240秒才会关闭处于time_wait的链接，高并发下服务端会因为处于time_wait连接数太多，无法建立新连接，需要调小等待值。
 在linux服务器上通过变更/etc/sysctl.conf修改缺省值
 
@@ -142,7 +148,7 @@ linux 默认 fd数为1024.并发数过大会导致“open too many files”错�
 
 服务器内重定向使用forward,外部重定向使用URL拼装工具生成，否则带来URL维护不一致问题。
 
-二方库依赖
+    * [(十) 二分库依赖]
 线上应用不要依赖snapshot版本，不依赖是保证发布的幂等性。
 
 二方库的新增或者升级，保持除功能点之外的其他jar包仲裁结果不变。如果有改变，必须明确评估和验证，建议进行dependency:resolve前后信息对比，如果仲裁结果完全不一致，通过dependency:tree找出差异点，进行excludes排除jar包。
@@ -151,18 +157,19 @@ linux 默认 fd数为1024.并发数过大会导致“open too many files”错�
 
 依赖于一个二方库时，必须定义一个统一的版本，避免版本号的不一致。
 
-应用分层
+    * [(十一) 应用分层]
 在Dao层，无法用细粒度异常进行catch,所以使用catch(Exception e) 方式，并throw new DAOException(e) 不进行打印。
 
 在manager/service层进行捕获，并打印到日志中，service层将日志输出到磁盘，web层跳转到友好界面。
 
-ORM映射
+    * [(十二) ORM映射]
 在表进行查询中一律不使用*作为查询字段列表，需要那些字段必须写明。
 pojo属性不能加is,数据库字段必须加is_,需要在mybatis生成器中将代码进行修改。
 sql.xml配置参数使用 #{}，不要使用${}这种方式容易出现SQL注入
 不允许直接拿HashMap和HashTable作为查询结果集的输出。
 事务不要滥用，事务影响数据库的QPS,使用事务的地方需要考虑各方面的回滚。
-SQL语句
+
+    * [(十三) SQL语句]
 count(distinct col) 计算该列除NULL之外的不重复行，注意count(distinct col1,col2)如果其中一列全为null,即使另一列有不同值也返回0。
 当某一列值全为null,count(col)返回结果为0，sum(col)返回结果为NULL,因此Sum(col)要注意NPE问题。可以用
 select if(isnull(sum(g)),0,sum(g)) from table;
@@ -175,9 +182,9 @@ select length("轻松工作")；返回12
 select character_length("轻松工作")； 返回4
 存储表情用utfmb4来进行存储，注意它与utf-8的区别。
 
-8.不建议使用truncate
+不建议使用truncate
 
-索引规约
+    * [(十四) 索引规约]
 业务上具有唯一特性的字段，即使多个字段的组合，也必须构建唯一索引。
 在varchar上创建索引，必须指明索引的长度，没有必要对全字段建立索引，根据实际文本区分度决定索引长度即可。
 count(distinct left(列名，索引长度))/count(*)
@@ -209,7 +216,7 @@ varchar是可变长字符串，不预先分配存储空间，长度不要超过5
 
 合适的字符存储长度，不但节约数据库的表空间，节约索引的存储，更重要的是提升检索速度。
 
-安全规约
+    * [(十五) 安全规约]
 用户个人的页面必须进行权限校验。
 
 用户敏感数据禁止直接展示，必须脱敏，手机号隐藏中间4位。
@@ -225,7 +232,7 @@ CSRF跨站请求伪造是一类常见的编程漏洞，对于存在CSRF漏洞的
 
 单元测试可以重复执行，不能受外界环境的影响，在设计时就要把SUT改为注入，在测试时使用spring这样的DI框架注入一个本地实现。
 
-异常处理
+    * [(十六) 异常处理]
 java 类库中定义的一类RuntimeException可以通过预先检查进行规避，而不应该通过catch进行处理，比如IndexOutOfBoundsException,NullPointerException
 
 有try块放到事务代码中，catch后，需要事务回滚，一定注意手动回滚。
@@ -234,7 +241,7 @@ java 类库中定义的一类RuntimeException可以通过预先检查进行规�
 
 方法的返回值可以为null,不强制返回空集合和空对象，必须添加注释说明什么情况下返回为空
 
-其他
+    * [(十七) 其他]
 在使用正则表达式时要学会利用预编译，加快正则匹配速度，定义正则的时候不要在方法体内进行定义。
 
 volocity调用POJO类属性的时候，建议直接使用属性名取值即可，模板引擎会自动按照规约调用Pojo的getXxx(),如果是boolean基本数据类型调用 isXxx(),如果Boolean包装对象，调用getXxx()的方法
