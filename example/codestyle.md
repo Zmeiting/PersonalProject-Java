@@ -1,4 +1,3 @@
-* [代码规范]
     * [(一) 命名规约]
 类命 驼峰式 MarcoPolo
 方法名 localValue
