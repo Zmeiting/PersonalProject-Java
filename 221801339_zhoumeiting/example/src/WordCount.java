@@ -1,4 +1,3 @@
-package WordCount;
 import java.util.*;
 public class WordCount {
 	public static void main(String[] args) {
@@ -10,7 +9,7 @@ public class WordCount {
 		String outputFile=total[1].toString();
 		//Set<String> file_paths = new HashSet<String>();
 		//file_paths.add(file);
-	    //String file_path="E:\\output.txt";  //因为是多个文件输入，一个文件输出，暂时不知道怎么同时输入文件路径
+	    //String file_path="E:\\output.txt";  //鍥犱负鏄涓枃浠惰緭鍏ワ紝涓�涓枃浠惰緭鍑猴紝鏆傛椂涓嶇煡閬撴�庝箞鍚屾椂杈撳叆鏂囦欢璺緞
 		//Set<String> file_paths = new HashSet<String>();
 		String characters=new CountUtil().ReturnCharactersNum(inputFile);
 		String words=new CountUtil().ReturnWordsNum(inputFile);
