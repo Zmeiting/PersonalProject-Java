@@ -1,4 +1,3 @@
-package WordCount;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,33 +16,33 @@ import java.util.TreeSet;
 public class CountUtil 
 {
 	/**
-	 * ·µ»Ø×Ö·ûÊı
+	 * è¿”å›å­—ç¬¦æ•°
 	 * @param file_paths
 	 * @return
 	 */
 	public String ReturnCharactersNum(String file_path) {
         int count = 0,bytes = 0;
-        String result = "";//ÓÃÓÚ´æ´¢·µ»ØÖµ
-        byte [] item = new byte[20*1024];//ÓÃ´æ´¢¶ÁÈ¡Êı¾İµÄ¶¨³£×Ö½ÚÊı×é
-        int len = item.length;//µÃµ½itemµÄ³¤¶ÈÒÔ±ÜÃâÑ­»·Ê±·´¸´µ÷ÓÃ.length
-        FileInputStream in = null;//ÉùÃ÷Ò»¸öÎÄ¼şÊäÈëÁ÷
+        String result = "";//ç”¨äºå­˜å‚¨è¿”å›å€¼
+        byte [] item = new byte[20*1024];//ç”¨å­˜å‚¨è¯»å–æ•°æ®çš„å®šå¸¸å­—èŠ‚æ•°ç»„
+        int len = item.length;//å¾—åˆ°itemçš„é•¿åº¦ä»¥é¿å…å¾ªç¯æ—¶åå¤è°ƒç”¨.length
+        FileInputStream in = null;//å£°æ˜ä¸€ä¸ªæ–‡ä»¶è¾“å…¥æµ
         try {
             //for (String file_path : file_paths) {
-                 in = new FileInputStream(file_path);//µÃµ½×Ö·ûÊäÈëÁ÷£¬stringÎªÎÄ¼ş¾ø¶ÔÂ·¾¶         
+                 in = new FileInputStream(file_path);//å¾—åˆ°å­—ç¬¦è¾“å…¥æµï¼Œstringä¸ºæ–‡ä»¶ç»å¯¹è·¯å¾„         
                 while ((bytes = in.read(item,0,len))!=-1) {
-                		count+=bytes;//Í³¼ÆÀÛ¼Æ¶ÁÈ¡µÄ×Ö·ûÊı,Ò»¸öÓ¢ÎÄ×Ö·ûÕ¼Ò»¸ö×Ö½Ú
+                		count+=bytes;//ç»Ÿè®¡ç´¯è®¡è¯»å–çš„å­—ç¬¦æ•°,ä¸€ä¸ªè‹±æ–‡å­—ç¬¦å ä¸€ä¸ªå­—èŠ‚
                 }
-                result += "characters: "+count+"\n";//½á¹û×Ö·û´®Æ´½Ó
+                result += "characters: "+count+"\n";//ç»“æœå­—ç¬¦ä¸²æ‹¼æ¥
                 count = 0;  
             //}    
         } catch (FileNotFoundException e) {
-            System.out.println("ÓĞÎÄ¼şÊäÈë´íÎó£¬ÇëºË¶Ô£¡£¨Èç¹û²»»áÊ¹ÓÃÏà¶ÔÂ·¾¶£¬ÇëÊ¹ÓÃ¾ø¶ÔÂ·¾¶£©"); //¼ì²éµ½ÎÄ¼ş²»´æÔÚ£¬ÌáÊ¾´íÎó
-            System.exit(0); //½áÊø³ÌĞò
+            System.out.println("æœ‰æ–‡ä»¶è¾“å…¥é”™è¯¯ï¼Œè¯·æ ¸å¯¹ï¼ï¼ˆå¦‚æœä¸ä¼šä½¿ç”¨ç›¸å¯¹è·¯å¾„ï¼Œè¯·ä½¿ç”¨ç»å¯¹è·¯å¾„ï¼‰"); //æ£€æŸ¥åˆ°æ–‡ä»¶ä¸å­˜åœ¨ï¼Œæç¤ºé”™è¯¯
+            System.exit(0); //ç»“æŸç¨‹åº
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
             try {
-                in.close();//¹Ø±ÕÊäÈëÁ÷
+                in.close();//å…³é—­è¾“å…¥æµ
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -51,7 +50,7 @@ public class CountUtil
         return result;
     }
 	/**
-	 * ·µ»Øµ¥´ÊÊı
+	 * è¿”å›å•è¯æ•°
 	 * @param file_paths
 	 * @return
 	 */
@@ -60,26 +59,26 @@ public class CountUtil
 		String result="";
 		StringBuffer saveString=new StringBuffer();
 		String tmp="";
-		FileInputStream in=null;//ÎÄ¼ş×Ö·ûÊäÈëÁ÷
-		InputStreamReader isr=null;//×Ö½ÚÊäÈëÁ÷
-		BufferedReader bis=null;//»º´æÊäÈëÁ÷
+		FileInputStream in=null;//æ–‡ä»¶å­—ç¬¦è¾“å…¥æµ
+		InputStreamReader isr=null;//å­—èŠ‚è¾“å…¥æµ
+		BufferedReader bis=null;//ç¼“å­˜è¾“å…¥æµ
 		try {
 			//for(String file_path:file_paths)
 			{
 				in=new FileInputStream(file_path);
 				isr=new InputStreamReader(in);
 				bis=new BufferedReader(isr);
-				while((tmp=bis.readLine())!=null)//readLine·µ»Ø¶ÁÈ¡×Ö½Ú£¬Ã»ÓĞÁË¾Í·µ»Ønull
+				while((tmp=bis.readLine())!=null)//readLineè¿”å›è¯»å–å­—èŠ‚ï¼Œæ²¡æœ‰äº†å°±è¿”å›null
 				{
-					saveString.append(tmp);//½«ĞÂ¶Á³öÀ´µÄÊı¾İ±£´æµ½ÒÑÓĞµÄºóÃæ
-					saveString.append(" ");//ÒÔ±ã·Ö¸îÔÙ¼ÓÒ»¸ö¿Õ¸ñ£¬¶ÁÒ»ĞĞ¼ÓÒ»¸ö
+					saveString.append(tmp);//å°†æ–°è¯»å‡ºæ¥çš„æ•°æ®ä¿å­˜åˆ°å·²æœ‰çš„åé¢
+					saveString.append(" ");//ä»¥ä¾¿åˆ†å‰²å†åŠ ä¸€ä¸ªç©ºæ ¼ï¼Œè¯»ä¸€è¡ŒåŠ ä¸€ä¸ª
 				}
 				//saveString.toString().replaceAll("[^A-Za-z0-9]"," ");
-				tmp = saveString.toString(); //ÓÃ×Ö·û´®´æ´¢£¬ÒÔÓÃsplit·½·¨Çø·Öµ¥´Ê
-				//tmp.replaceAll("[\\W]|_", " ");//ËùÓĞ·Ç×ÖÄ¸Êı×Ö·ûºÅÌæ»»³É¿Õ¸ñ
-				tmp=tmp.replaceAll("[^A-Za-z0-9]", " ");//Ìæ»»ËùÓĞ·Ç×ÖÄ¸Êı×ÖµÄ·ûºÅÎª¿Õ¸ñ
-				tmp=tmp.toLowerCase();//È«²¿±äÎªĞ¡Ğ´·½±ã¼ÆËãÇ°ËÄ¸öÊÇ·ñÎª×ÖÄ¸
-				String [] total = tmp.split("[\\s+]");//µ¥´ÊÒÔ¿Õ¸ñ·Ö¸î
+				tmp = saveString.toString(); //ç”¨å­—ç¬¦ä¸²å­˜å‚¨ï¼Œä»¥ç”¨splitæ–¹æ³•åŒºåˆ†å•è¯
+				//tmp.replaceAll("[\\W]|_", " ");//æ‰€æœ‰éå­—æ¯æ•°å­—ç¬¦å·æ›¿æ¢æˆç©ºæ ¼
+				tmp=tmp.replaceAll("[^A-Za-z0-9]", " ");//æ›¿æ¢æ‰€æœ‰éå­—æ¯æ•°å­—çš„ç¬¦å·ä¸ºç©ºæ ¼
+				tmp=tmp.toLowerCase();//å…¨éƒ¨å˜ä¸ºå°å†™æ–¹ä¾¿è®¡ç®—å‰å››ä¸ªæ˜¯å¦ä¸ºå­—æ¯
+				String [] total = tmp.split("[\\s+]");//å•è¯ä»¥ç©ºæ ¼åˆ†å‰²
 				count=total.length;
 			    for(int i=0;i<total.length;i++)
 			    {
@@ -93,7 +92,7 @@ public class CountUtil
 			    		for(int j=0;j<4;j++)
 			    		{
 			    			char c=s.charAt(j);
-			    			if(!(c>='a'&&c<='z'))//Ö»ÒªÊÇ×ÖÄ¸¶¼ÒÑ¾­»»³ÉĞ¡Ğ´ÁË
+			    			if(!(c>='a'&&c<='z'))//åªè¦æ˜¯å­—æ¯éƒ½å·²ç»æ¢æˆå°å†™äº†
 			    			{
 			    				count--;
 			    				break;
@@ -101,19 +100,19 @@ public class CountUtil
 			    		}
 			    	}
 			    }
-				result += "words: "+count+"\n"; //½á¹û×Ö·û´®Æ´½Ó
+				result += "words: "+count+"\n"; //ç»“æœå­—ç¬¦ä¸²æ‹¼æ¥
 				count=0;
 			}
 		}catch (FileNotFoundException e) {
-				System.out.println("ÓĞÎÄ¼şÊäÈë´íÎó£¬ÇëºË¶Ô£¡£¨Èç¹û²»»áÊ¹ÓÃÏà¶ÔÂ·¾¶£¬ÇëÊ¹ÓÃ¾ø¶ÔÂ·¾¶£©");
-				System.exit(0); //½áÊø³ÌĞò
+				System.out.println("æœ‰æ–‡ä»¶è¾“å…¥é”™è¯¯ï¼Œè¯·æ ¸å¯¹ï¼ï¼ˆå¦‚æœä¸ä¼šä½¿ç”¨ç›¸å¯¹è·¯å¾„ï¼Œè¯·ä½¿ç”¨ç»å¯¹è·¯å¾„ï¼‰");
+				System.exit(0); //ç»“æŸç¨‹åº
 	    }catch (IOException e) {
 	    	e.printStackTrace();
 		}finally {
 			try {
-				in.close();//¹Ø±ÕÎÄ¼ş×Ö·ûÊäÈëÁ÷
-				isr.close();//¹Ø±Õ×Ö½ÚÊäÈëÁ÷
-				bis.close();//¹Ø±Õ»º´æÊäÈëÁ÷
+				in.close();//å…³é—­æ–‡ä»¶å­—ç¬¦è¾“å…¥æµ
+				isr.close();//å…³é—­å­—èŠ‚è¾“å…¥æµ
+				bis.close();//å…³é—­ç¼“å­˜è¾“å…¥æµ
 				} catch (IOException e) {
 					 e.printStackTrace();
 				}
@@ -121,16 +120,16 @@ public class CountUtil
 		return result;
     }
 	/**
-	 * ·µ»ØĞĞÊı
+	 * è¿”å›è¡Œæ•°
 	 * @param file_paths
 	 * @return
 	 */
 	public String ReturnLinesNum(String file_path){
 		int count=0;
 		String result="";
-		FileInputStream in=null;//ÎÄ¼ş×Ö·ûÊäÈëÁ÷
-		InputStreamReader isr=null;//×Ö½ÚÊäÈëÁ÷
-		BufferedReader bis=null;//»º´æÊäÈëÁ÷
+		FileInputStream in=null;//æ–‡ä»¶å­—ç¬¦è¾“å…¥æµ
+		InputStreamReader isr=null;//å­—èŠ‚è¾“å…¥æµ
+		BufferedReader bis=null;//ç¼“å­˜è¾“å…¥æµ
 		try {
 			//for(String file_path:file_paths)
 			{
@@ -141,19 +140,19 @@ public class CountUtil
 				{
 					count++;
 				}
-				result += "lines: "+count+"\n"; //½á¹û×Ö·û´®Æ´½Ó
+				result += "lines: "+count+"\n"; //ç»“æœå­—ç¬¦ä¸²æ‹¼æ¥
 				count=0;
 			}
 		}catch (FileNotFoundException e) {
-				System.out.println("ÓĞÎÄ¼şÊäÈë´íÎó£¬ÇëºË¶Ô£¡£¨Èç¹û²»»áÊ¹ÓÃÏà¶ÔÂ·¾¶£¬ÇëÊ¹ÓÃ¾ø¶ÔÂ·¾¶£©");
-				System.exit(0); //½áÊø³ÌĞò
+				System.out.println("æœ‰æ–‡ä»¶è¾“å…¥é”™è¯¯ï¼Œè¯·æ ¸å¯¹ï¼ï¼ˆå¦‚æœä¸ä¼šä½¿ç”¨ç›¸å¯¹è·¯å¾„ï¼Œè¯·ä½¿ç”¨ç»å¯¹è·¯å¾„ï¼‰");
+				System.exit(0); //ç»“æŸç¨‹åº
 	    }catch (IOException e) {
 	    	e.printStackTrace();
 		}finally {
 			try {
-				in.close();//¹Ø±ÕÎÄ¼ş×Ö·ûÊäÈëÁ÷
-				isr.close();//¹Ø±Õ×Ö½ÚÊäÈëÁ÷
-				bis.close();//¹Ø±Õ»º´æÊäÈëÁ÷
+				in.close();//å…³é—­æ–‡ä»¶å­—ç¬¦è¾“å…¥æµ
+				isr.close();//å…³é—­å­—èŠ‚è¾“å…¥æµ
+				bis.close();//å…³é—­ç¼“å­˜è¾“å…¥æµ
 				} catch (IOException e) {
 					 e.printStackTrace();
 				}
@@ -164,23 +163,23 @@ public class CountUtil
 		String result="";
 		StringBuffer saveString=new StringBuffer();
 		String tmp="";
-		FileInputStream in=null;//ÎÄ¼ş×Ö·ûÊäÈëÁ÷
-		InputStreamReader isr=null;//×Ö½ÚÊäÈëÁ÷
-		BufferedReader bis=null;//»º´æÊäÈëÁ÷
+		FileInputStream in=null;//æ–‡ä»¶å­—ç¬¦è¾“å…¥æµ
+		InputStreamReader isr=null;//å­—èŠ‚è¾“å…¥æµ
+		BufferedReader bis=null;//ç¼“å­˜è¾“å…¥æµ
 		try {
 			//for(String file_path:file_paths)
 			{
 				in=new FileInputStream(file_path);
 				isr=new InputStreamReader(in);
 				bis=new BufferedReader(isr);
-				while((tmp=bis.readLine())!=null)//readLine·µ»Ø¶ÁÈ¡×Ö½Ú£¬Ã»ÓĞÁË¾Í·µ»Ønull
+				while((tmp=bis.readLine())!=null)//readLineè¿”å›è¯»å–å­—èŠ‚ï¼Œæ²¡æœ‰äº†å°±è¿”å›null
 				{
-					saveString.append(tmp);//½«ĞÂ¶Á³öÀ´µÄÊı¾İ±£´æµ½ÒÑÓĞµÄºóÃæ
-					saveString.append(" ");//·½±ãÇø·Öµ¥´Ê£¬»»Ò»ĞĞ¶ÁÈ¡¼ÓÒ»¸ö¿Õ¸ñ
+					saveString.append(tmp);//å°†æ–°è¯»å‡ºæ¥çš„æ•°æ®ä¿å­˜åˆ°å·²æœ‰çš„åé¢
+					saveString.append(" ");//æ–¹ä¾¿åŒºåˆ†å•è¯ï¼Œæ¢ä¸€è¡Œè¯»å–åŠ ä¸€ä¸ªç©ºæ ¼
 				}
-				Map<String,Integer>map = new HashMap<String, Integer>();//ÔËÓÃ¹şÏ£ÅÅĞòµÄ·½·¨½øĞĞÅÅĞò
-				tmp = saveString.toString(); //ÓÃ×Ö·û´®´æ´¢£¬ÒÔÓÃsplit·½·¨Çø·Öµ¥´Ê
-				/*for(int i=0;i<tmp.length();i++)//Ìæ»»ÖĞÎÄ
+				Map<String,Integer>map = new HashMap<String, Integer>();//è¿ç”¨å“ˆå¸Œæ’åºçš„æ–¹æ³•è¿›è¡Œæ’åº
+				tmp = saveString.toString(); //ç”¨å­—ç¬¦ä¸²å­˜å‚¨ï¼Œä»¥ç”¨splitæ–¹æ³•åŒºåˆ†å•è¯
+				/*for(int i=0;i<tmp.length();i++)//æ›¿æ¢ä¸­æ–‡
 				{
 					char c = tmp.charAt(i);
 					int v = (int)c;
@@ -188,16 +187,16 @@ public class CountUtil
 						tmp.replace(new String(), " ");
 					}
 				}*/
-				tmp=tmp.replaceAll("[^A-Za-z0-9]", " ");//ËùÓĞ·Ç×ÖÄ¸Êı×Ö·ûºÅÌæ»»³É¿Õ¸ñ
-				tmp=tmp.toLowerCase();//È«²¿»»³ÉĞ¡Ğ´
-	            StringTokenizer st = new StringTokenizer(tmp," ");//·Ö¸î×Ö·û´®
-	            //°Ñ·Ö¸îºÃµÄµ¥´Ê±£´æÔÚletter×Ö·û´®ÖĞ
+				tmp=tmp.replaceAll("[^A-Za-z0-9]", " ");//æ‰€æœ‰éå­—æ¯æ•°å­—ç¬¦å·æ›¿æ¢æˆç©ºæ ¼
+				tmp=tmp.toLowerCase();//å…¨éƒ¨æ¢æˆå°å†™
+	            StringTokenizer st = new StringTokenizer(tmp," ");//åˆ†å‰²å­—ç¬¦ä¸²
+	            //æŠŠåˆ†å‰²å¥½çš„å•è¯ä¿å­˜åœ¨letterå­—ç¬¦ä¸²ä¸­
 	            while (st.hasMoreTokens()) 
 	            {
 	                 String letter = st.nextToken();
 	                 int count;
 	                 if (map.get(letter) == null) {
-	                     count = 1;//±íÃ÷ÁËÃ»ÓĞ½øĞĞ·Ö¸î¡£
+	                     count = 1;//è¡¨æ˜äº†æ²¡æœ‰è¿›è¡Œåˆ†å‰²ã€‚
 	                 } else {
 	                     count = map.get(letter).intValue() + 1;
 	                 }
@@ -217,7 +216,7 @@ public class CountUtil
 	                	 for(int i=0;i<4;i++)
 	                	 {
 	                		 char c=s.charAt(i);
-  			    			 if(!(c>='a'&&c<='z'))//Ö»ÒªÊÇ×ÖÄ¸¶¼ÒÑ¾­»»³ÉĞ¡Ğ´ÁË
+  			    			 if(!(c>='a'&&c<='z'))//åªè¦æ˜¯å­—æ¯éƒ½å·²ç»æ¢æˆå°å†™äº†
   			    			 {
   			    				isWords=false;
   			    				break;
@@ -236,15 +235,15 @@ public class CountUtil
 	            }
 			}
 		}catch (FileNotFoundException e) {
-				System.out.println("ÓĞÎÄ¼şÊäÈë´íÎó£¬ÇëºË¶Ô£¡£¨Èç¹û²»»áÊ¹ÓÃÏà¶ÔÂ·¾¶£¬ÇëÊ¹ÓÃ¾ø¶ÔÂ·¾¶£©");
-				System.exit(0); //½áÊø³ÌĞò
+				System.out.println("æœ‰æ–‡ä»¶è¾“å…¥é”™è¯¯ï¼Œè¯·æ ¸å¯¹ï¼ï¼ˆå¦‚æœä¸ä¼šä½¿ç”¨ç›¸å¯¹è·¯å¾„ï¼Œè¯·ä½¿ç”¨ç»å¯¹è·¯å¾„ï¼‰");
+				System.exit(0); //ç»“æŸç¨‹åº
 	    }catch (IOException e) {
 	    	e.printStackTrace();
 		}finally {
 			try {
-				in.close();//¹Ø±ÕÎÄ¼ş×Ö·ûÊäÈëÁ÷
-				isr.close();//¹Ø±Õ×Ö½ÚÊäÈëÁ÷
-				bis.close();//¹Ø±Õ»º´æÊäÈëÁ÷
+				in.close();//å…³é—­æ–‡ä»¶å­—ç¬¦è¾“å…¥æµ
+				isr.close();//å…³é—­å­—èŠ‚è¾“å…¥æµ
+				bis.close();//å…³é—­ç¼“å­˜è¾“å…¥æµ
 				} catch (IOException e) {
 					 e.printStackTrace();
 				}
@@ -252,25 +251,25 @@ public class CountUtil
 		return result;
 	}
 	public boolean OutputFile(String File_path,String Context){
-		File OutputFile = new File(File_path); //´´½¨File¶ÔÏó
-		FileOutputStream os = null; //ÉùÃ÷ ÎÄ¼şÊä³öÁ÷
-		byte [] a = null; //ÓÃÓÚ´æ´¢Context×ª»¯µÄbyte×Ö½ÚÊı×é
+		File OutputFile = new File(File_path); //åˆ›å»ºFileå¯¹è±¡
+		FileOutputStream os = null; //å£°æ˜ æ–‡ä»¶è¾“å‡ºæµ
+		byte [] a = null; //ç”¨äºå­˜å‚¨Contextè½¬åŒ–çš„byteå­—èŠ‚æ•°ç»„
 		try {
-			if(!OutputFile.exists()) {        //ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
-				OutputFile.createNewFile(); //²»´æÔÚ£¬´´½¨Ò»¸öÎÄ¼ş
+			if(!OutputFile.exists()) {        //åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
+				OutputFile.createNewFile(); //ä¸å­˜åœ¨ï¼Œåˆ›å»ºä¸€ä¸ªæ–‡ä»¶
 			}
-			FileWriter fileWriter =new FileWriter(File_path);//ÉèÖÃÇå¿ÕÎÄ¼şÄÚÈİ¹¦ÄÜ
+			FileWriter fileWriter =new FileWriter(File_path);//è®¾ç½®æ¸…ç©ºæ–‡ä»¶å†…å®¹åŠŸèƒ½
 			fileWriter.write("");
 		    fileWriter.flush();
 		    fileWriter.close();
-			os = new FileOutputStream(OutputFile); //»ñµÃÊä³öÁ÷¶ÔÏó
-			a = Context.getBytes(); //½«Context×ª»¯ÎªByteÊı×é£¬ÒÔ±ãĞ´ÈëÎÄ¼ş
-			os.write(a); //½«byteÊı×éĞ´ÈëÎÄ¼ş
+			os = new FileOutputStream(OutputFile); //è·å¾—è¾“å‡ºæµå¯¹è±¡
+			a = Context.getBytes(); //å°†Contextè½¬åŒ–ä¸ºByteæ•°ç»„ï¼Œä»¥ä¾¿å†™å…¥æ–‡ä»¶
+			os.write(a); //å°†byteæ•°ç»„å†™å…¥æ–‡ä»¶
 		}catch(IOException e) {
 			e.printStackTrace();
 		}finally{
 			try {
-				os.close(); //¹Ø±ÕÊä³öÁ÷
+				os.close(); //å…³é—­è¾“å‡ºæµ
 			}catch(IOException e) {
 				e.printStackTrace();
 			}
