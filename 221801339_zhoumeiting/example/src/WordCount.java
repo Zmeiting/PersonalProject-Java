@@ -8,6 +8,8 @@ public class WordCount {
 		String [] total = file.split("[\\s+]");
 		String inputFile=total[0].toString();
 		String outputFile=total[1].toString();
+		//Test test=new Test();
+		//test.reduceText(inputFile); 测试用代码
 		//Set<String> file_paths = new HashSet<String>();
 		//file_paths.add(file);
 	    //String file_path="E:\\output.txt";  //因为是多个文件输入，一个文件输出，暂时不知道怎么同时输入文件路径
