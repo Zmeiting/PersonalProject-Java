@@ -1,5 +1,3 @@
-package WordCount;
-
 public class WordEntity implements Comparable<WordEntity>{
 	private String key;
     private Integer count;
@@ -10,10 +8,10 @@ public class WordEntity implements Comparable<WordEntity>{
     public int compareTo(WordEntity o) {
         int cmp = count.intValue() - o.count.intValue();
         return (cmp == 0 ? key.compareTo(o.key) : -cmp);
-        //Ö»ĞèÔÚÕâ¶ù¼ÓÒ»¸ö¸ººÅ¾Í¿ÉÒÔ¾ö¶¨ÊÇÉıĞò»¹ÊÇ½µĞòÅÅÁĞ  -cmp½µĞòÅÅÁĞ£¬cmpÉıĞòÅÅÁĞ
-        //ÒòÎªTreeSet»áµ÷ÓÃWorkForMapµÄcompareTo·½·¨À´¾ö¶¨×Ô¼ºµÄÅÅĞò
+        //åªéœ€åœ¨è¿™å„¿åŠ ä¸€ä¸ªè´Ÿå·å°±å¯ä»¥å†³å®šæ˜¯å‡åºè¿˜æ˜¯é™åºæ’åˆ—  -cmpé™åºæ’åˆ—ï¼Œcmpå‡åºæ’åˆ—
+        //å› ä¸ºTreeSetä¼šè°ƒç”¨WorkForMapçš„compareToæ–¹æ³•æ¥å†³å®šè‡ªå·±çš„æ’åº
     }
-    public void setKey(String s) { //ÓÃÀ´×ª»»´óĞ¡Ğ´
+    public void setKey(String s) { //ç”¨æ¥è½¬æ¢å¤§å°å†™
     	key=s;
     }
     public String getKey() {
