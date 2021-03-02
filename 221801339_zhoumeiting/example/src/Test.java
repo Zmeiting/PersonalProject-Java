@@ -1,5 +1,3 @@
-package WordCount;
-
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -11,7 +9,7 @@ public class Test {
         	FileOutputStream outFile=new FileOutputStream(file);
 			for(int i=0;i<1000;i++)
             {
-    	      int num=(int)(Math.random()*95+32); //Ëæ»úÉú³É32-127µÄÊý£¬¶ÔÓ¦¿ÉÒÔÏÔÊ¾µÄASCIIÂë
+    	      int num=(int)(Math.random()*95+32); //éšæœºç”Ÿæˆ32-127çš„æ•°ï¼Œå¯¹åº”å¯ä»¥æ˜¾ç¤ºçš„ASCIIç 
     	      title+=(char) num;
              }
              outFile.write(title.getBytes());
