@@ -2,7 +2,7 @@
 #过滤整个mtk文件夹
 *.zip               
 #过滤所有.zip文件
-/mtk/do.c        
+221801339_zhoumeiting/example/src/*.class        
 #过滤/mtk/do.c文件
 
 fd1/*　　　   
